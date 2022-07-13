@@ -1,39 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>todo - Do Anything 💪</title>
 
     <script src="main.js" defer></script>
-</head>
+  </head>
 
-<body>
+  <body>
     <header>todo - Do Anything 💪</header>
 
     <div class="list-container">
-        <div class="lst-type">
-            <span class="lst-title"></span>
-            <span class="lst-switch">
-                <!-- Add a hamburger menu icon here -->
-            </span>
-            <!-- And the menu items here, to switch to/create new lists -->
-        </div>
-        <div class="tasks"></div>
-        <div class="btn-wrapper">
-            <button type="button">Add New Item</button>
-        </div>
+      <div class="project-list">
+        <span class="lst-title"></span>
+        <span class="lst-switch">
+          <!-- Add a hamburger menu icon here -->
+        </span>
+        <!-- And the menu items here, to switch to/create new lists -->
+      </div>
+      <div class="tasks"></div>
+      <div class="btn-wrapper">
+        <button type="button">Add New Item</button>
+      </div>
     </div>
 
+    <!-- Modal box w/ input forms here-->
     <div id="add-form" class="modal-wrapper">
-        <div class="modal-box">
-            <form>
-                
-            </form>
-        </div>
-    </div>
-</body>
+      <div class="modal-box">
+        <form class="new-task hidden">
+          <h1>Add New Task</h1>
+          <section class="form-body">
+            <input type="text" name="title" placeholder="Title" required />
+            <textarea
+              name="desc"
+              id="desc"
+              rows="10"
+              placeholder="Description"
+              required
+            ></textarea>
+            <label for="date">Due Date: </label>
+            <input type="date" name="date" id="date" required />
+            <fieldset>
+              <legend>Priority</legend>
 
+              <input
+                type="radio"
+                name="priority"
+                id="low"
+                value="low"
+                required
+              />
+              <label for="low">Low</label>
+              <br />
+              <input type="radio" name="priority" id="med" value="med" />
+              <label for="med">Medium</label>
+              <br />
+              <input type="radio" name="priority" id="high" value="high" />
+              <label for="high">High</label>
+            </fieldset>
+          </section>
+
+          <section class="form-footer">
+            <button type="submit">Add</button>
+            <button type="button">Cancel</button>
+          </section>
+        </form>
+
+        <form class="new-list hidden">
+          <h1>Add New List</h1>
+          <section class="form-body">
+            <input type="text" name="name" placeholder="List Name" required />
+          </section>
+          <section class="form-footer">
+            <button type="submit">Add</button>
+            <button type="button">Cancel</button>
+          </section>
+        </form>
+      </div>
+    </div>
+  </body>
 </html>

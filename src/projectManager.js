@@ -27,7 +27,7 @@ const projectManager = (() => {
      * @returns index of the element if found; otherwise -1
      */
     const lookup = (name) => {
-        return customProjects.indexOf(customProjects.find(el => el.name === name));
+        return customProjects.findIndex(el => el.name === name);
     }
 
     /**
@@ -56,7 +56,7 @@ const projectManager = (() => {
      * @returns Project
      */
     const getActiveProject = () => {
-        if (selected == -1)
+        if (selected === -1)
             return defaultProject;
         else
             return customProjects[selected];
@@ -95,14 +95,5 @@ const projectManager = (() => {
 
 })();
 
-// testing --------------------------------------
-console.log(projectManager.showAllProjects());
-console.log(projectManager.createNewProject('School'));
-console.log(projectManager.showAllProjects());
-console.log(projectManager.createNewProject('Misc'));
-console.log(projectManager.showAllProjects());
-console.log(projectManager.deleteProject('Misc'));
-console.log(projectManager.showAllProjects());
-// ----------------------------------------------
 
 export default projectManager;

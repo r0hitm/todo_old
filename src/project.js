@@ -24,7 +24,7 @@ class Project {
         return this.#name;
     }
 
-    get listOfTasks() {
+    get tasks() {
         return this.#listOfTasks;
     }
 
@@ -43,22 +43,15 @@ class Project {
         if (dataIndex !== -1)
             this.#listOfTasks.splice(dataIndex, 1);
     }
+
+    /**
+     * look up task name in the #listOfTasks
+     * @returns task if succesful; otherwise undefined
+     */
+    lookup(name) {
+        return this.#listOfTasks.find(el => el.title === name);
+    }
 }
 
-// testing ---------------
-const data = {
-    title: 'do something',
-    desc: 'important work for xyz',
-    dueDate: '2022-6-22',
-    priority: 'low'
-}
-
-const task = new Task(data);
-
-const testProject = new Project('Testing');
-testProject.addTask(task);
-testProject.addTask('rohi');
-console.log(testProject);
-//-----------------------
 
 export default Project;
