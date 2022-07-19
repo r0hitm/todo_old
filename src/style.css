@@ -33,14 +33,9 @@ header {
   font-size: 1.75rem;
 }
 
-
-.hidden {
-    visibility: hidden;
-}
-
 /* Modal boxes that house the forms */
 .modal-wrapper {
-    display: none; /* Hidden by default */
+    /* display: none; do not need as modals will use .hidden */
     position: fixed;
     top: 0;
     left: 0;
@@ -48,6 +43,10 @@ header {
     height: 100%;
     z-index: 9999;
     background: #6c6fad9a;
+}
+
+.hidden {
+    display: none;
 }
 
 .modal-box {
@@ -61,7 +60,7 @@ header {
     padding: 2rem;
 }
 
-.modal-box > form {
+form {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -83,14 +82,14 @@ textarea#desc {
 
 .form-footer {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
     width: 100%;
     align-items: center;
 }
 
 .form-footer button {
-    height: 50px;
-    width: 100px;
+    height: 2em;
+    width: 5em;
     background: #FFE9ED;
     cursor: pointer;
     border-radius: 17px;
