@@ -1,11 +1,11 @@
 /**
  * todo
- * 
+ *
  *      A todo webapp
- * 
+ *
  * task.js
  *      The task item of the todo list
- * 
+ *
  * Author: Rohit Mehta
  */
 
@@ -22,22 +22,28 @@ class Task {
     constructor(data) {
         this.title = data.title;
         this.desc = data.desc;
-        this.dueDate = {
-            year: Number.parseInt(data.dueDate.substr(0, 4)),
-            month: Number.parseInt(data.dueDate.substr(5, 1)),
-            day: Number.parseInt(data.dueDate.substr(7, 2)),
-        }
+        this.dueDate = (() => {
+            const temp = data.dueDate.split("-");
+            return {
+                year: Number.parseInt(temp[0]),
+                month: Number.parseInt(temp[1]),
+                day: Number.parseInt(temp[2]),
+            };
+        })();
         this.priority = data.priority;
     }
 
     edit(data) {
         this.title = data.title;
         this.desc = data.desc;
-        this.dueDate = {
-            year: Number.parseInt(data.dueDate.substr(0, 4)),
-            month: Number.parseInt(data.dueDate.substr(5, 1)),
-            day: Number.parseInt(data.dueDate.substr(7, 2)),
-        }
+        this.dueDate = (() => {
+            const temp = data.dueDate.split("-");
+            return {
+                year: Number.parseInt(temp[0]),
+                month: Number.parseInt(temp[1]),
+                day: Number.parseInt(temp[2]),
+            };
+        })();
         this.priority = data.priority;
     }
 }
@@ -45,6 +51,5 @@ class Task {
 // const testing = new Task(data);
 
 // console.log(testing);
-
 
 export default Task;
