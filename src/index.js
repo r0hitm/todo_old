@@ -25,22 +25,53 @@ const listForm = document.querySelector('form[name="list-form"]');
 const taskFormModal = document.getElementById("task-form-wrapper");
 const listFormModal = document.getElementById("list-form-wrapper");
 
+// This is Event-Oriented Programming:
+// Event listeners are added to the DOM elements
+// and the event handlers are defined in the event handlers
+// and the event handlers are called when the event occurs.
+//
+
+const getFormData = form => {
+    const formData = new FormData(form);
+    const data = {};
+    for (const [key, value] of formData.entries()) {
+        data[key] = value;
+    }
+    return data;
+};
+
+/**
+ * Get a new task from the user
+ */
 const getNewTask = (() => {
     const taskForm = document.querySelector('form[name="task-form"]');
 
     // Event listeners for the task & new list form
     taskForm.addEventListener("submit", e => {
         e.preventDefault();
-        const formData = new FormData(taskForm);
-        const data = {};
-        for (const [key, value] of formData.entries()) {
-            data[key] = value;
-        }
+        const data = getFormData(taskForm);
         console.log(data);
         const task = new Task(data);
-        // TODO: add the task to the active project
+        // TODO: add this task to the current project
+        // (current project is the one that is selected in the Project Manager)
         console.log(task);
         taskFormModal.classList.add("hidden");
+    });
+})();
+
+const getNewList = (() => {
+    const listForm = document.querySelector('form[name="list-form"]');
+
+    // Event listeners for the new list form
+    listForm.addEventListener("submit", e => {
+        e.preventDefault();
+        const data = getFormData(listForm);
+        console.log(data);
+        const project = new Project(data.name);
+        // TODO: add this project to the project manager
+        // set the current project to the new project
+        console.log(project);
+        listFormModal.classList.add("hidden");
     });
 })();
 
@@ -65,6 +96,13 @@ const setUpModalControls = (() => {
             listFormModal.classList.add("hidden");
         });
     });
+
+    // window.addEventListener("click", e => {
+    //     if (e.target === taskFormModal || e.target === listFormModal) {
+    //         taskFormModal.classList.add("hidden");
+    //         listFormModal.classList.add("hidden");
+    //     }
+    // });
 })();
 
 // testing --------------------------------------
