@@ -6,7 +6,6 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>todo - Do Anything 💪</title>
-
 </head>
 
 <body>
@@ -17,42 +16,31 @@
       <label for="projects">Select a Task List</label>
       <select name="projects" id="projects">
         <option value="default" selected>default</option>
-        <option value="dummy">dummy</option>
+        <!-- <option value="dummy">dummy</option> -->
       </select>
-      <div class="btn-wrapper">
+      <div class="list-buttons">
         <button type="submit">View List</button>
         <button id="new-list" type="button">Add New List</button>
       </div>
     </form>
 
     <div class="current-list-wrapper">
-      Curernt List: <span class="current-list">default</span>
+      Curernt List: <output class="current-list">default</output>
     </div>
 
-    <div class="task-list-wrapper">
-      <ul>
-        <li>
-          <div class="task">
-            <span class="title">do this</span>
-            <span class="description">some description about do this</span>
-            <button type="button" class="done">✅ Done</button>
-            <button type="button" class="del">❌ Delete</button>
-          </div>
-        </li>
-        <li>
-          <div class="task">
-            <span class="title">do that</span>
-            <span class="description">some description about do that</span>
-            <button type="button" class="done">✅ Done</button>
-            <button type="button" class="del">❌ Delete</button>
-          </div>
-        </li>
-      </ul>
-    </div>
+    <ul class="task-list-wrapper">
+      <li>
+        <!-- 
+          <div class="task complete">
+          <span class="title">do this</span>
+          <span class="description">some description about do that</span>
+          <button class="del" type="button">Delete</button>
+        </div> 
+      -->
+      </li>
+    </ul>
 
-    <div class="btn-wrapper">
-      <button type="button" id="new-task">Add New Item</button>
-    </div>
+    <button type="button" id="new-task">Add New Task</button>
   </div>
 
   <!-- Modal box w/ input forms here-->
@@ -73,10 +61,10 @@
           <fieldset>
             <legend>Priority</legend>
 
-            <input type="radio" name="priority" id="low" value="low" required/>
+            <input type="radio" name="priority" id="low" value="low" required />
             <label for="low">Low</label>
             <br />
-            <input type="radio" name="priority" id="med" value="med" checked/>
+            <input type="radio" name="priority" id="med" value="med" checked />
             <label for="med">Medium</label>
             <br />
             <input type="radio" name="priority" id="high" value="high" />
@@ -108,7 +96,6 @@
         </section>
       </form>
     </div>
-  </div>
   </div>
 </body>
 

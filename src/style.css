@@ -33,37 +33,55 @@ header {
     justify-content: center;
     align-items: center;
     padding: 0.5rem 1rem;
-    background: #A3A7F8;
+    background: #a3a7f8;
     border-bottom: 1px solid #eaeaea;
     font-size: 1.75rem;
 }
+
+.list-buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 80%;
+}
+
+/* button {
+    background: #555bd4;
+    border: 1px solid black;
+    border-radius: 3px;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 0.2rem 1rem;
+    cursor: hand;
+} */
 
 form.project-lists {
     border: 1px solid #eaeaea;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: .65rem;
+    padding: 0.65rem;
 }
 
-form.project-lists>select {
+form.project-lists > select {
     width: 100%;
     padding: 0.3rem;
     border: 1px solid #eaeaea;
     border-radius: 0.2rem;
-    font-size: .85rem;
+    font-size: 0.85rem;
     font-family: "Gotu", "Roboto", sans-serif;
 }
 
 .current-list-wrapper {
     margin: 1em auto;
     font-size: 1.25rem;
-    background: #A3A7F8;
+    background: #a3a7f8;
     text-align: center;
 }
 
 .current-list {
-    font-size: 1.50rem;
+    font-size: 1.5rem;
     font-weight: bold;
 }
 
@@ -79,35 +97,14 @@ ul {
     list-style: none;
     padding: 0;
     margin: 0;
+    width: 100%;
 }
 
-ul > li {
+li {
     display: flex;
     justify-content: space-between;
     padding: 0.5rem;
-    border-bottom: 1px solid #eaeaea;
 }
-
-.task {
-    font-size: 1.25rem;
-    display: flex;
-    flex-direction: column;
-}
-
-.task > .title {
-    font-weight: bold;
-}
-
-.task > .title::before {
-    content: "O";
-    margin-right: 0.5rem;
-    color: #A3A7F8;
-}
-
-.task > .description {
-    font-size: 0.85rem;
-}
-
 
 /* Modal boxes that house the forms */
 .modal-wrapper {
@@ -145,11 +142,11 @@ form {
     align-items: center;
 }
 
-section.form-body>* {
-    margin: .5em 0;
+section.form-body > * {
+    margin: 0.5em 0;
 }
 
-input[type='text'] {
+input[type="text"] {
     height: 2rem;
     width: 100%;
 }
@@ -165,10 +162,9 @@ textarea#desc {
     align-items: center;
 }
 
-.form-footer button {
+button {
     height: 2em;
-    width: 5em;
-    background: #FFE9ED;
+    background: #ffe9ed;
     cursor: pointer;
     border-radius: 17px;
     box-shadow: none;
@@ -176,6 +172,49 @@ textarea#desc {
     font: normal normal normal 1.2rem/1 Gotu, sans-serif;
 }
 
+.form-footer button {
+    width: 5em;
+}
+
 .form-footer button:active {
     background: #470505;
+}
+
+/* styles for task */
+.task {
+    font-size: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    margin: 0.5rem 0;
+    user-select: none;
+    border: 1px solid #eaeaea;
+    width: 100%;
+    border-radius: 25px;
+    padding: 0.5rem;
+}
+
+.task > .title {
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.task > .title::before {
+    content: "O";
+    margin-right: 0.5rem;
+    color: #a3a7f8;
+    font-size: 1.5em;
+}
+
+.task > .description {
+    font-size: 0.85rem;
+}
+
+/* stling for a completed task */
+.complete > .title, .description {
+    text-decoration: line-through;
+}
+
+.task .del {
+    align-self: flex-end;
+    font-size: small;
 }
