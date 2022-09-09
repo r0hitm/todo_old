@@ -10,17 +10,16 @@
  * Author: Rohit Mehta
  */
 
-import pm from "./projectManager";
+import pm from "./projectManager.js";
 import Project from "./project.js";
 import Task from "./task.js";
 
 import "./style.css";
 
-// Getting the DOM handles
-const listSelectionForm = document.querySelector('form[name="project-lists"]');
-const currentList = document.querySelector("span.current-list");
+// const listSelectionForm = document.querySelector('form[name="project-lists"]');
+// const currentList = document.querySelector("span.current-list");
 
-const listForm = document.querySelector('form[name="list-form"]');
+// const listForm = document.querySelector('form[name="list-form"]');
 
 const taskFormModal = document.getElementById("task-form-wrapper");
 const listFormModal = document.getElementById("list-form-wrapper");
@@ -29,7 +28,6 @@ const listFormModal = document.getElementById("list-form-wrapper");
 // Event listeners are added to the DOM elements
 // and the event handlers are defined in the event handlers
 // and the event handlers are called when the event occurs.
-//
 
 const getFormData = form => {
     const formData = new FormData(form);
@@ -54,6 +52,8 @@ const getNewTask = (() => {
         const task = new Task(data);
         // TODO: add this task to the current project
         // (current project is the one that is selected in the Project Manager)
+        // STEPS: get current project, call its addTask method,
+        // and redraw the list
         console.log(task);
         taskFormModal.classList.add("hidden");
     });
@@ -96,39 +96,9 @@ const setUpModalControls = (() => {
             listFormModal.classList.add("hidden");
         });
     });
-
-    // window.addEventListener("click", e => {
-    //     if (e.target === taskFormModal || e.target === listFormModal) {
-    //         taskFormModal.classList.add("hidden");
-    //         listFormModal.classList.add("hidden");
-    //     }
-    // });
 })();
 
-// testing --------------------------------------
 
-// adding some tasks to default project
-// let currentProject = pm.getActiveProject();
-// console.log(currentProject);
-// currentProject.addTask(
-//     new Task({
-//         title: 'do something',
-//         desc: 'important work for xyz',
-//         dueDate: '2022-6-22',
-//         priority: 'low'
-//     })
-// );
+// TODO: Event listeners for Task items like delete, edit, etc.
 
-// console.log(currentProject);
-// console.log(currentProject.tasks);
-// console.log(pm.getActiveProject().tasks);
-// console.log(currentProject === pm.getActiveProject());
-
-// console.log(pm.showAllProjects());
-// console.log(pm.createNewProject('School'));
-// console.log(pm.showAllProjects());
-// console.log(pm.createNewProject('Misc'));
-// console.log(pm.showAllProjects());
-// console.log(pm.deleteProject('Misc'));
-// console.log(pm.showAllProjects());
-// // ----------------------------------------------
+// TODO: Event listeners for Project items like delete, edit, etc.
