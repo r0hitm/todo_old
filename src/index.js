@@ -1,34 +1,62 @@
 /**
- * todo
- *
- *      A todo webapp
- *
  * injex.js
- *      This file connects the rest of app to the DOM. And,
- *      is also the entry point.
+ *      This is the main file for the app.
  *
  * Author: Rohit Mehta
  */
 
-import pm from "./projectManager.js";
-import Project from "./project.js";
-import Task from "./task.js";
+import List from "./List.js";
+import { getList, addList, removeList, getListNames } from "./data.js";
 
 import "./style.css";
 
-// const listSelectionForm = document.querySelector('form[name="project-lists"]');
-// const currentList = document.querySelector("span.current-list");
+// Modal Boxes
+const newTaskFormModalBox = document.querySelector(
+    "div.modal-wrapper.new-task"
+);
+const newListFormModalBox = document.querySelector(
+    "div.modal-wrapper.new-list"
+);
 
-// const listForm = document.querySelector('form[name="list-form"]');
+//==============================================================================
+// Following buttons are for above modal boxes.
+//  - controls visibilty of the forms
+//==============================================================================
+const addNewTask = document.querySelector("button#new-task");
+addNewTask.addEventListener("click", () => {
+    console.log("Add task button clicked");
+    newTaskFormModalBox.classList.remove("hidden");
+});
 
-const taskFormModal = document.getElementById("task-form-wrapper");
-const listFormModal = document.getElementById("list-form-wrapper");
+const addNewList = document.querySelector("button#new-list");
+addNewList.addEventListener("click", () => {
+    console.log("Add list button clicked");
+    newListFormModalBox.classList.remove("hidden");
+});
 
-// This is Event-Oriented Programming:
-// Event listeners are added to the DOM elements
-// and the event handlers are defined in the event handlers
-// and the event handlers are called when the event occurs.
+const cancelBtns = Array.from(
+    document.querySelectorAll('button[type="button"].cancel')
+);
+cancelBtns.forEach(btn => {
+    btn.addEventListener("click", e => {
+        e.preventDefault();
+        console.log("Clicked cancel button");
+        newTaskFormModalBox.classList.add("hidden");
+        newListFormModalBox.classList.add("hidden");
+    });
+});
+//==============================================================================
 
+const allForms = document.forms;
+const newTaskForm = allForms["new-task"];
+const newListForm = allForms["list-form"];
+const listSelectionForm = allForms["list-selection"];
+
+/**
+ * Retrive a form data from a form element
+ * @param {form} form A valid form element
+ * @returns form data as a dictionary
+ */
 const getFormData = form => {
     const formData = new FormData(form);
     const data = {};
@@ -38,67 +66,30 @@ const getFormData = form => {
     return data;
 };
 
-/**
- * Get a new task from the user
- */
-const getNewTask = (() => {
-    const taskForm = document.querySelector('form[name="task-form"]');
+console.log(allForms);
 
-    // Event listeners for the task & new list form
-    taskForm.addEventListener("submit", e => {
-        e.preventDefault();
-        const data = getFormData(taskForm);
-        console.log(data);
-        const task = new Task(data);
-        // TODO: add this task to the current project
-        // (current project is the one that is selected in the Project Manager)
-        // STEPS: get current project, call its addTask method,
-        // and redraw the list
-        console.log(task);
-        taskFormModal.classList.add("hidden");
-    });
-})();
+// set event listeners on each of the forms
+newTaskForm.addEventListener("submit", e => {
+    e.preventDefault();
+    newTaskFormModalBox.classList.add("hidden");
 
-const getNewList = (() => {
-    const listForm = document.querySelector('form[name="list-form"]');
+    const data = getFormData(newTaskForm);
+    console.log("Submitted new task form", data);
+    // TODO: Add task to the list
+});
 
-    // Event listeners for the new list form
-    listForm.addEventListener("submit", e => {
-        e.preventDefault();
-        const data = getFormData(listForm);
-        console.log(data);
-        const project = new Project(data.name);
-        // TODO: add this project to the project manager
-        // set the current project to the new project
-        console.log(project);
-        listFormModal.classList.add("hidden");
-    });
-})();
+newListForm.addEventListener("submit", e => {
+    e.preventDefault();
+    newListFormModalBox.classList.add("hidden");
+    
+    const data = getFormData(newListForm);
+    console.log("Submitted new list form", data);
+    // TODO: Add list to the list of lists
+});
 
-// Getting the DOM handles for the new-task form and new-list form
-const setUpModalControls = (() => {
-    const newTaskBtn = document.getElementById("new-task");
-    const newListBtn = document.getElementById("new-list");
-    const cancelBtns = Array.from(document.querySelectorAll("button.cancel"));
-
-    // Event listeners for the modal control
-    newTaskBtn.addEventListener("click", () => {
-        taskFormModal.classList.remove("hidden");
-    });
-
-    newListBtn.addEventListener("click", () => {
-        listFormModal.classList.remove("hidden");
-    });
-
-    cancelBtns.forEach(btn => {
-        btn.addEventListener("click", () => {
-            taskFormModal.classList.add("hidden");
-            listFormModal.classList.add("hidden");
-        });
-    });
-})();
-
-
-// TODO: Event listeners for Task items like delete, edit, etc.
-
-// TODO: Event listeners for Project items like delete, edit, etc.
+listSelectionForm.addEventListener("submit", e => {
+    e.preventDefault();
+    const data = getFormData(listSelectionForm);
+    console.log("Submitted list selection form", data);
+    // TODO: change the selected list
+});
