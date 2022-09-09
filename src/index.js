@@ -9,6 +9,10 @@ import List from "./List.js";
 import { getList, addList, removeList, getListNames } from "./data.js";
 
 import "./style.css";
+import { add } from "date-fns";
+
+// Global variable to keep track of current active list
+let activeList = "default";
 
 // Modal Boxes
 const newTaskFormModalBox = document.querySelector(
@@ -75,21 +79,27 @@ newTaskForm.addEventListener("submit", e => {
 
     const data = getFormData(newTaskForm);
     console.log("Submitted new task form", data);
-    // TODO: Add task to the list
+    getList(activeList).addTask(
+        data.title,
+        data.desc,
+        data.dueDate,
+        data.priority
+    );
 });
 
 newListForm.addEventListener("submit", e => {
     e.preventDefault();
     newListFormModalBox.classList.add("hidden");
-    
+
     const data = getFormData(newListForm);
     console.log("Submitted new list form", data);
-    // TODO: Add list to the list of lists
+    addList(data.name);
+    activeList = data.name; // set the new list as active list
 });
 
 listSelectionForm.addEventListener("submit", e => {
     e.preventDefault();
     const data = getFormData(listSelectionForm);
     console.log("Submitted list selection form", data);
-    // TODO: change the selected list
+    activeList = data.list;
 });
