@@ -44,17 +44,18 @@ class List {
     }
 
     // TODO: Do I need a method to change the task's details?
-    
-    addTask(task) {
-        this.#listOfTasks.push(task);
+
+    addTask(title, desc, dueDate, priority) {
+        this.#listOfTasks.push(new Task(title, desc, dueDate, priority));
     }
 
-    removeTask(task) {
-        const index = this.#listOfTasks.indexOf(task);
-        if (index > -1) {
-            this.#listOfTasks.splice(index, 1);
-        }
-    }
+    // TODO:
+    // removeTask(task) {
+    //     const index = this.#listOfTasks.indexOf(task);
+    //     if (index > -1) {
+    //         this.#listOfTasks.splice(index, 1);
+    //     }
+    // }
 
     removeCompletedTasks() {
         this.#listOfTasks = this.#listOfTasks.filter(task => !task.isComplete);
