@@ -8,6 +8,7 @@
  **/
 
 @import url("https://fonts.googleapis.com/css2?family=Gotu&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;600;700&display=swap');
 
 * {
     box-sizing: border-box;
@@ -188,12 +189,21 @@ li.task-item {
     padding: 2rem;
 }
 
+svg{
+    vertical-align: middle;
+}
+
 button {
+    margin: 10px;
     height: 2em;
-    background: #ffe9ed;
-    cursor: pointer;
     border-radius: 17px;
+    font-family: "Roboto";
+    font-weight: 600;
+    font-size: 1.2em;
     box-shadow: none;
     border-style: solid;
-    font: normal normal normal 1.2rem/1 Gotu, sans-serif;
+    background-color: #4338ca33;
+    color: #4338ca;
+    border: solid 1px #4338ca33;
+    letter-spacing: 0.3px;
 }
