@@ -5,11 +5,11 @@
  * Author: Rohit Mehta
  */
 
-import List from "./List.js";
-import { getList, addList, removeList, getListNames } from "./data.js";
+// import List from "./List.js";
+import { getList, addList, removeList } from "./data.js";
+import { updateList, updateTaskList } from "./display.js";
 
 import "./style.css";
-import { add } from "date-fns";
 
 // Global variable to keep track of current active list
 let activeList = "default";
@@ -85,6 +85,10 @@ newTaskForm.addEventListener("submit", e => {
         data.dueDate,
         data.priority
     );
+
+    requestAnimationFrame(_ => {
+        updateTaskList(activeList);
+    });
 });
 
 newListForm.addEventListener("submit", e => {
@@ -95,6 +99,10 @@ newListForm.addEventListener("submit", e => {
     console.log("Submitted new list form", data);
     addList(data.name);
     activeList = data.name; // set the new list as active list
+
+    requestAnimationFrame(_ => {
+        updateList(activeList);
+    });
 });
 
 listSelectionForm.addEventListener("submit", e => {
@@ -102,4 +110,8 @@ listSelectionForm.addEventListener("submit", e => {
     const data = getFormData(listSelectionForm);
     console.log("Submitted list selection form", data);
     activeList = data.list;
+
+    requestAnimationFrame(_ => {
+        updateTaskList(activeList);
+    });
 });
