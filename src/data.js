@@ -31,5 +31,9 @@ const getListNames = () => {
 }
 
 // TODO: Implement persistent storage of lists locally
+const init = () => {
+    console.log('init() called');
+    // TODO: Load data from local storage if available
+}
 
-export { getList, addList, removeList, getListNames };
+export { getList, addList, removeList, getListNames, init };

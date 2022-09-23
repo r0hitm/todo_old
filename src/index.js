@@ -6,8 +6,8 @@
  */
 
 // import List from "./List.js";
-import { getList, addList, removeList } from "./data.js";
-import { updateList, updateTaskList } from "./display.js";
+import { getList, addList, removeList, init } from "./data.js";
+import { updateList, updateTaskList, updateListName } from "./display.js";
 
 import "./style.css";
 
@@ -30,12 +30,14 @@ const addNewTask = document.querySelector("button#new-task");
 addNewTask.addEventListener("click", () => {
     console.log("Add task button clicked");
     newTaskFormModalBox.classList.remove("hidden");
+    document.querySelector("input#title").focus();
 });
 
 const addNewList = document.querySelector("button#new-list");
 addNewList.addEventListener("click", () => {
     console.log("Add list button clicked");
     newListFormModalBox.classList.remove("hidden");
+    document.querySelector("input#list-name").focus();
 });
 
 const cancelBtns = Array.from(
@@ -70,7 +72,7 @@ const getFormData = form => {
     return data;
 };
 
-console.log(allForms);
+// console.log(allForms);
 
 // set event listeners on each of the forms
 newTaskForm.addEventListener("submit", e => {
@@ -86,9 +88,9 @@ newTaskForm.addEventListener("submit", e => {
         data.priority
     );
 
-    requestAnimationFrame(_ => {
-        updateTaskList(activeList);
-    });
+    // console.log(e);
+    newTaskForm.reset();
+    updateTaskList(activeList);
 });
 
 newListForm.addEventListener("submit", e => {
@@ -100,9 +102,9 @@ newListForm.addEventListener("submit", e => {
     addList(data.name);
     activeList = data.name; // set the new list as active list
 
-    requestAnimationFrame(_ => {
-        updateList(activeList);
-    });
+    newListForm.reset();
+    // updateListName(activeList);
+    updateList(activeList);
 });
 
 listSelectionForm.addEventListener("submit", e => {
@@ -111,7 +113,17 @@ listSelectionForm.addEventListener("submit", e => {
     console.log("Submitted list selection form", data);
     activeList = data.list;
 
-    requestAnimationFrame(_ => {
-        updateTaskList(activeList);
-    });
+    console.log("Active list is now", activeList);
+
+    listSelectionForm.reset();
+    // updateListName(activeList);
+    // updateTaskList(activeList);
+    updateList(activeList);
+});
+//==============================================================================
+
+window.addEventListener("load", () => {
+    init();
+    updateList(activeList);
+    // updateTaskList(activeList);
 });

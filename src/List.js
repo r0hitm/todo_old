@@ -49,13 +49,12 @@ class List {
         this.#listOfTasks.push(new Task(title, desc, dueDate, priority));
     }
 
-    // TODO:
-    // removeTask(task) {
-    //     const index = this.#listOfTasks.indexOf(task);
-    //     if (index > -1) {
-    //         this.#listOfTasks.splice(index, 1);
-    //     }
-    // }
+    removeTask(taskName) {
+        this.#listOfTasks = this.#listOfTasks.filter(
+            task => task.title !== taskName
+        );
+        console.log('After removing ${taskName}', this.#listOfTasks);
+    }
 
     removeCompletedTasks() {
         this.#listOfTasks = this.#listOfTasks.filter(task => !task.isComplete);

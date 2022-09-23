@@ -1,41 +1,53 @@
 /**
  * display.js
- *      Provides the functions to display the lists and tasks
+ *      Displays the data in DOM (tasks, lists & other updates)
  *
  * Author: Rohit Mehta
  */
 
 import { getList, getListNames } from "./data.js";
 
-// The DOM element which has all the tasks as its children
-const parentUl = document.querySelector("ul.task-list");
-
 const updateTaskList = d => {
-    const taskItem = document.createElement("li");
-    taskItem.classList.add("task-item");
+    // DOM element to display the tasks
+    const ul = document.querySelector("ul.task-list");
+    ul.textContent = ""; // clear previous list
+    const tasks = getList(d).tasks;
+    // const tasks = taskList.tasks;
 
-    const taskList = getList(d);
-    const tasks = taskList.tasks;
-
-    console.log({ taskList });
+    // console.log({ taskList });
     console.log(tasks);
 
     tasks.forEach(task => {
         const taskDiv = document.createElement("div");
         taskDiv.classList.add("task");
-        let title = document.createElement("div");
+        const title = document.createElement("div");
         title.classList.add("title");
-        let desc = document.createElement("div");
+        const desc = document.createElement("div");
         desc.classList.add("description");
-        let dueDate = document.createElement("div");
+        const dueDate = document.createElement("div");
         dueDate.classList.add("dueDate");
-        let priority = document.createElement("div");
+        const priority = document.createElement("div");
         priority.classList.add("priority");
+        const button = document.createElement("button");
+        button.classList.add("edit");
+        button.setAttribute("type", "button");
+        button.textContent = "Mark Complete";
 
-        console.log(task.title);
-        console.log(task.desc);
-        console.log(task.dueDate);
-        console.log(task.priority);
+        button.addEventListener("click", e => {
+            console.log("'Mark Complete' button clicked");
+            console.log(e);
+            // TODO: Add code to edit the task
+            console.log(e.path[1].childNodes[0].textContent);
+            getList(d).removeTask(e.path[1].childNodes[0].textContent);
+            // console.log(tasks);
+            updateTaskList(d);
+        });
+
+        // console.log(task.title);
+        // console.log(task.desc);
+        // console.log(task.dueDate);
+        // console.log(task.priority);
+        // console.log(task.isComplete);
 
         title.textContent = task.title;
         desc.textContent = task.desc;
@@ -46,21 +58,36 @@ const updateTaskList = d => {
         taskDiv.appendChild(desc);
         taskDiv.appendChild(dueDate);
         taskDiv.appendChild(priority);
+        taskDiv.appendChild(button);
 
+        const taskItem = document.createElement("li");
+        taskItem.classList.add("task-item");
         taskItem.appendChild(taskDiv);
-        parentUl.appendChild(taskItem);
+        ul.appendChild(taskItem);
     });
+};
 
-    // TODO: create a task item node for each task in the list
-    // TODO: then add it to the taskListParent
+const updateListName = name => {
+    const output = document.querySelector("output.current-list");
+    output.textContent = name;
 };
 
 const updateList = d => {
+    const select = document.querySelector("select#list");
+    select.textContent = "";
     const lists = getListNames();
 
     console.log(lists);
-    // TODO: add <option> to the list selection form <select> element
-    //       for each list in the list of lists
+
+    lists.forEach(list => {
+        const option = document.createElement("option");
+        option.textContent = list;
+        option.value = list;
+        select.appendChild(option);
+    });
+
+    updateListName(d);
+    updateTaskList(d);
 };
 
 export { updateList, updateTaskList };
