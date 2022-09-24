@@ -6,8 +6,8 @@
  */
 
 // import List from "./List.js";
-import { getList, addList, removeList, init } from "./data.js";
-import { updateList, updateTaskList, updateListName } from "./display.js";
+import { getList, addList, removeList, saveLocally, loadLocally } from "./data.js";
+import { updateList, updateTaskList } from "./display.js";
 
 import "./style.css";
 
@@ -67,7 +67,7 @@ const getFormData = form => {
     const formData = new FormData(form);
     const data = {};
     for (const [key, value] of formData.entries()) {
-        data[key] = value;
+        data[key] = value.trim();
     }
     return data;
 };
@@ -90,6 +90,7 @@ newTaskForm.addEventListener("submit", e => {
 
     // console.log(e);
     newTaskForm.reset();
+    saveLocally();
     updateTaskList(activeList);
 });
 
@@ -104,6 +105,7 @@ newListForm.addEventListener("submit", e => {
 
     newListForm.reset();
     // updateListName(activeList);
+    saveLocally();
     updateList(activeList);
 });
 
@@ -118,12 +120,14 @@ listSelectionForm.addEventListener("submit", e => {
     listSelectionForm.reset();
     // updateListName(activeList);
     // updateTaskList(activeList);
+    saveLocally();
     updateList(activeList);
 });
 //==============================================================================
 
 window.addEventListener("load", () => {
-    init();
+    // init();
+    loadLocally();
     updateList(activeList);
     // updateTaskList(activeList);
 });

@@ -35,6 +35,10 @@ class List {
         return this.#listOfTasks;
     }
 
+    set tasks(newTasks) {
+        this.#listOfTasks = newTasks;
+    }
+
     isEmpty() {
         return this.#listOfTasks.length === 0;
     }
@@ -42,8 +46,6 @@ class List {
     changeName(newName) {
         this.name = newName;
     }
-
-    // TODO: Do I need a method to change the task's details?
 
     addTask(title, desc, dueDate, priority) {
         this.#listOfTasks.push(new Task(title, desc, dueDate, priority));
@@ -53,7 +55,7 @@ class List {
         this.#listOfTasks = this.#listOfTasks.filter(
             task => task.title !== taskName
         );
-        console.log('After removing ${taskName}', this.#listOfTasks);
+        // console.log('After removing ${taskName}', this.#listOfTasks);
     }
 
     removeCompletedTasks() {

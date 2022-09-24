@@ -5,7 +5,7 @@
  * Author: Rohit Mehta
  */
 
-import { getList, getListNames } from "./data.js";
+import { getList, getListNames, saveLocally } from "./data.js";
 
 const updateTaskList = d => {
     // DOM element to display the tasks
@@ -15,7 +15,7 @@ const updateTaskList = d => {
     // const tasks = taskList.tasks;
 
     // console.log({ taskList });
-    console.log(tasks);
+    // console.log(tasks);
 
     tasks.forEach(task => {
         const taskDiv = document.createElement("div");
@@ -35,11 +35,11 @@ const updateTaskList = d => {
 
         button.addEventListener("click", e => {
             console.log("'Mark Complete' button clicked");
-            console.log(e);
-            // TODO: Add code to edit the task
-            console.log(e.path[1].childNodes[0].textContent);
+            // console.log(e);
+            // console.log(e.path[1].childNodes[0].textContent);
             getList(d).removeTask(e.path[1].childNodes[0].textContent);
             // console.log(tasks);
+            saveLocally();
             updateTaskList(d);
         });
 
@@ -69,7 +69,7 @@ const updateTaskList = d => {
 
 const updateListName = name => {
     const output = document.querySelector("output.current-list");
-    output.textContent = name;
+    output.textContent = 'Current List: ' + name;
 };
 
 const updateList = d => {
@@ -77,7 +77,7 @@ const updateList = d => {
     select.textContent = "";
     const lists = getListNames();
 
-    console.log(lists);
+    // console.log(lists);
 
     lists.forEach(list => {
         const option = document.createElement("option");
