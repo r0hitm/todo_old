@@ -39,6 +39,15 @@ header {
     font-size: 1.75rem;
 }
 
+.gh-repo:link {
+    text-decoration: none;
+    color: #4338ca;
+}
+
+.gh-repo:visited {
+    color: #4338ca;
+}
+
 .list-buttons {
     margin-top: 1rem;
     display: flex;
