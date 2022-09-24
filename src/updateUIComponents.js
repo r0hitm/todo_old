@@ -1,6 +1,6 @@
 /**
- * display.js
- *      Displays the data in DOM (tasks, lists & other updates)
+ * updateUIComponents.js
+ *      Provides functions to update various UI components
  *
  * Author: Rohit Mehta
  */

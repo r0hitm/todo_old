@@ -7,7 +7,7 @@
 
 // import List from "./List.js";
 import { getList, addList, removeList, saveLocally, loadLocally } from "./data.js";
-import { updateList, updateTaskList } from "./display.js";
+import { updateList, updateTaskList } from "./updateUIComponents.js";
 
 import "./style.css";
 
@@ -123,11 +123,21 @@ listSelectionForm.addEventListener("submit", e => {
     saveLocally();
     updateList(activeList);
 });
+
+const deleteCurrentList = document.querySelector("button#del-list");
+deleteCurrentList.addEventListener("click", () => {
+    console.log("Delete list button clicked");
+    if (activeList !== "default") {
+        removeList(activeList);
+        activeList = "default";
+        saveLocally(); // update storage
+        updateList(activeList); // update UI
+    }
+});
 //==============================================================================
 
 window.addEventListener("load", () => {
     // init();
     loadLocally();
     updateList(activeList);
-    // updateTaskList(activeList);
 });
