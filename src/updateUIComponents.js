@@ -36,8 +36,8 @@ const updateTaskList = d => {
         button.addEventListener("click", e => {
             console.log("'Mark Complete' button clicked");
             // console.log(e);
-            // console.log(e.path[1].childNodes[0].textContent);
-            getList(d).removeTask(e.path[1].childNodes[0].textContent);
+            console.log(e.target.parentElement.firstChild.textContent);
+            getList(d).removeTask(e.target.parentElement.firstChild.textContent);
             // console.log(tasks);
             saveLocally();
             updateTaskList(d);
