@@ -1,5 +1,7 @@
 # todo
 
+**⚠️I redid this project using React, TypeScript and Firebase (authentication and database). 👉 [Check it out here](https://github.com/r0hitm/todo-app) ⚠️**
+
 A simple ToDo Web App inspired from [The Odin Project](https://www.theodinproject.com/paths/full-stack-javascript/courses/javascript/lessons/todo-list).
 
 ## Things I learnt
